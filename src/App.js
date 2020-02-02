@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "@emotion/styled";
+import { useTheme } from "./Contexts/darkModeContext";
 
-function App() {
+const Wrapper = styled("div")`
+  background: ${props => props.theme.background};
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  madding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen";
+  h1 {
+    color: ${props => props.theme.body};
+  }
+`;
+
+const App = () => {
+  const themeState = useTheme();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      <h1>Dark Mode example</h1>
+      <div>
+        <button onClick={() => themeState.toggle()}>
+          {themeState.dark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+        </button>
+      </div>
+    </Wrapper>
   );
-}
+};
 
 export default App;
