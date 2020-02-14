@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { useTheme } from "./Contexts/darkModeContext";
+import { Route, Switch } from 'react-router-dom'
+import CustomName from './CustomName';
 
 const Wrapper = styled("div")`
   background: ${props => props.theme.background};
@@ -24,6 +26,16 @@ const App = () => {
         <button onClick={() => themeState.toggle()}>
           {themeState.dark ? "Switch to Light Mode" : "Switch to Dark Mode"}
         </button>
+    <Switch>
+        <Route
+          path={'/:name'}
+          component={CustomName}
+        />
+        <Route
+          path={'/'}
+          component={CustomName}
+        />
+    </Switch>
       </div>
     </Wrapper>
   );
